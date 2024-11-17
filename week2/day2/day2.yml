@@ -1,0 +1,189 @@
+Agenda:Week2.day2 
+
+02:30 to 03:45 : Xpath
+03:45 to 04:15 : BreakOut+Break
+04:15 to 04:45 : Selenium Wait and WebDriver methods
+04:45 to 05:30 : Advance Xpath 
+05:30 to 05:50 : Breakout +Break
+05:50 to 06:20 : Advance Xpath
+06:20 to 06:40 : Live Quiz
+
+
+
+
+Xpath:
+XML Path
+Xpath-XML Path
+
+
+Absolute XPath: It starts from the root (html) and traverses down to the desired element, 
+detailing every single element in the hierarchy. The path starts with a single forward slash /, 
+indicating the root. 
+For example: 
+/html/body/div[2]/div[2]/div/form/p/input
+
+
+
+
+
+Relative XPath: It starts from anywhere within the document and typically focuses on 
+identifying elements based on attributes, indexes, or specific tags, not necessarily 
+detailing the entire path from the root. It starts with a double forward slash //,
+ indicating the search can begin anywhere. For example: //input[@id=‘username’].
+
+
+
+Relative Xpath:
+
+a.Basic xpath
+Attribute based xPath: 
+Syntax: //tagname[@attributename='attributeValue'] 
+EX: //input[@id='username']
+
+Text based xPath: 
+Syntax: //tagname[text()='textvalue'] 
+Example:  //a[text()='Leads']
+//span[text()='Learn More']
+
+
+Partial Attribute based xpath: 
+Syntax: //tagname[contains(@attributename,'partialattributevalue')]
+Example: //input[contains(@class,'Submit')]
+         //input[contains(@name,'TextField')]
+
+
+Partial Text based xpath:
+Syntax: //tagname[contains(text(),'partialtextvalue')]
+Example: //a[contains(text(),'CRM/')]
+         //a[contains(text(),'Today')]
+
+Index based xpath  or Collection Based Xpath:
+ Syntax: (//tagname[contains(text(),'partialtextvalue')])[index value]
+ xpath index value= 1
+ index based xpath should not go beyond 5
+ 1,2,3,4,5
+ [1]- no need give
+Example: (//input[@class='inputLogin'])[2]
+
+
+
+Load Url :https://login.salesforce.com/?locale=in
+Enter username:dilip@testleaf.com
+Enter password:testleaf@2024
+Click on Login
+
+
+https://www.snapdeal.com/
+Home & Kitchen- ES to YS
+Search - Parent to child
+Cart- gp to gc
+
+
+
+ Wait:
+  Java wait -Thread.sleep(2000); it will wait till time given to be completed
+
+Thread.sleep(10000)
+
+  Selenium wait :
+  1.Implicit wait
+  2.Explicit wait
+
+  Implicit wait :
+  its common for all findElement() and findElements()
+  common wait for all the lines of code
+
+public class login{
+
+  driver.manage().timeouts().implicitlywait(Duration.ofsecond(30));
+
+  findElement(by.id("Username"))->15 sec
+  findElement()-> 5sec
+  findElemnet()->
+  
+  }
+  
+  10mins
+
+  at 7mins
+  30sec -element action completed it will to next line 
+  it will not completed 30sec
+
+  driver.findElement(By.id("username")).senKeys("user");
+  thread.sleep(5000);
+
+  but if i am using implicit wait
+
+
+  its common for both findElement() and findElements()
+
+
+
+
+
+
+
+Advance Xpath:
+
+Parent to Child
+
+Basic Xpath parent / tagname of child
+Ex: //p[@class='top']/input
+
+
+GrandParent to GrandChild:
+Basic Xpath for Gp//tagname of Gc
+(//form[@id='login']//input)[2]
+//span[@class='a-price']//span[@class='a-price-whole']
+
+
+Child to Parent:
+Basic Xpath Child/parent::tagname of parent
+//input[contains(@name,'TextField')]/parent::div
+
+
+GrandChild to GrandParent :
+Basic xpath for GC/::ancestortagname of GP
+//input[@id='username']/ancestor::form
+
+
+
+
+
+1:https://www.snapdeal.com/
+   cart -xpath
+   footwear- xpath
+
+ 2.https://www.amazon.in/
+ Today's Deals 
+
+
+ Elder sibling to youngerSibling:
+ //label[text()='Username']/following-sibling::input
+
+ 
+ 
+
+ Younger sibling to Elder sibling:
+ Basic xpath Younger sibling/preceding-sibling::tagname of Es
+ //input[@id='username']/preceding-sibling::label
+
+
+
+ Elder cousin to younger cousin:
+ Basic xpat Elder Cousin/following::tagname of Yc
+ //input[@id='username']/following::input -> password crmsfa
+ 
+ 
+
+ Younger cousin to Elder Cousin:
+ Basic xpath Younger cousin /preceding::tagname of EC
+//input[@class='decorativeSubmit']/preceding::input[2] -> username demosalesmanger
+
+
+
+
+
+Url: https://login.salesforce.com/?locale=in
+UserName: dilip@testleaf.com
+Password: leaf@2024
