@@ -1,0 +1,199 @@
+Agenda:Week3.day1 
+
+02:30 to 03:30  : OOPs - Inheritance
+03:30 to 03:50  : Breakout
+03:50 to 04:00  : Break
+04:00 to 04:50  : Polymorphism
+04:50 to 05:15  : Breakout +Break
+05:15 to 06:15  : String 
+06:15 to 06:35  : Breakout
+
+
+
+
+
+
+
+
+Inheritance:
+Definition of Inheritance:
+
+Inheritance is a fundamental principle in object-oriented programming that allows a
+class to inherit attributes and behaviours (methods) from another class. This uses extends keyword
+
+Advantages of Inheritance:
+
+Reusability: Inheritance promotes the reuse of existing code without having to rewrite it.
+Readability: It makes the code more simple by establishing clear relationships between classes.
+Hierarchy: Establishes parent-child relationships between Classes and Interfaces,
+ making the structure easier to understand and maintain.
+
+
+Keyword: extends
+
+Types of Inheritance:
+
+Single or simple: A class inherits from one parent class.(public class CarP extends VehicelGP)
+
+Multiple: A class inherits behaviors from more than one class, typically achieved through
+ interfaces in Java.
+
+Multilevel: A class inherits from a child class, creating a multilevel chain.
+(BMWC  extends CarP ,CarP extends VehicelGP)
+ 
+Hierarchical: Multiple classes inherit from a single parent class.
+(CarP extends VehicelGP, AutoP extends VehicelGP)
+
+Hybrid: A combination of multilevel and hierarchical inheritance.
+
+
+Example:
+
+Integer extends Number
+
+ single or simple : class ChromiumDriver extends RemoteWebDriver
+
+Multilevel :
+ class ChromeDriver extends ChromiumDriver
+class ChromiumDriver extends RemoteWebDriver
+
+Hierarchical:
+
+ChromiumDriver extends RemoteWebDriver 
+FirefoxDriver extends RemoteWebDriver
+safariDriver extends RemoteWebDriver
+
+Hybrid:
+
+combination of grandparent,parent& child
+Multilevel and Hierarchical
+
+
+
+
+
+
+Definition
+
+Polymorphism in Java is a concept by which we can perform a single action in different ways.
+It is derived from two Greek words: "poly" and "morphs". "Poly" means many and "morphs" means forms.
+
+Types - compile-time polymorphism - runtime polymorphism. 
+
+Compile-time polymorphism is achieved by method overloading, while runtime polymorphism is achieved 
+by method overriding. 
+- It allows objects of different classes to be treated as objects of a common super class for seamless interaction, typically through the use of method overriding within an inheritance hierarchy. - This enables Java programs to be written more abstractly, promoting scalability and maintainability.
+
+//static ,compile- time,early, method overloading
+
+Overloading: - It refers to the ability to create multiple methods of the same name 
+with different implementations or arguments pass.
+-Calls to an overloaded method will run a specific implementation of that method appropriate 
+to the context, based on the number and type of arguments passed.
+public class OverLoading{
+
+public void browser(String name){
+
+}
+
+public void browser(int version,String name){
+
+}
+
+public void browser(int data,String Value,double x){
+
+}
+
+public void browser(String title,int taps){
+
+}
+
+
+
+
+Java Examples:
+
+Methods like add() can be overloaded to accept different types of arguments.
+Similarly, substring() in the String class is overloaded to accept different starting 
+and ending points for the substring.
+println("hi");
+printIn(car);
+
+Selenium WebDriver Examples:
+
+The frame() method in Selenium WebDriver is overloaded to allow different types 
+of arguments like an integer (index of the frame), a String (name or ID of the frame), or a WebElement.
+
+frame(int)
+frame(string name or id)
+frame(webelement)
+
+Advantages of Overloading:
+
+Flexibility: Allows methods to handle different data types and numbers of arguments.
+Readability: It can make the code more readable since the same method name can be used for 
+similar actions on different types of input.
+Reduces Complexity: Developers can use the same method name to perform similar actions, 
+which simplifies code organization and maintenance.
+
+
+
+Overriding
+
+Method overriding in Java occurs when a (child)subclass has a method with the same name, return type,
+ and parameters as a method in its superclass(parent ).
+
+parent:
+ public void phone(int value){
+  syso("iphone 13")
+ }
+
+
+child extends Parent
+
+public void phone(int age){
+  syso(iphone 16)
+}
+
+It's a key feature of runtime polymorphism and allows a subclass to provide a 
+specific implementation for a method that is already provided by its parent class
+ 
+ Examples:
+
+equals() of String class is overriden from the Object class
+toString() of String class is overriden from the Object class
+quit() of ChromiumDriver is overriden from the RemoteWebDriver Class
+
+
+
+
+
+method Overloading:
+Driver
+loadUrl(String url,boolean status)
+loadUrl(String url)
+
+method overrides:
+Browser - openURL() 
+Edge - openURL()
+create a object for Edge class 
+
+
+
+
+
+
+String:
+Strings in Java are immutable, meaning their values cannot be changed after they are created. 
+This immutability has several implications for how strings are handled in Java.
+
+
+The String class provides various methods for manipulating strings, 
+such as length(), charAt(), substring(), indexOf(), toLowerCase(), toUpperCase()
+
+ex:
+String company = "Test Leaf";
+int length = company.length(); // Returns the length of the string
+char firstChar = company.charAt(0); // Returns the character at index 0
+String subString = company.substring(5, 8); // Returns a substring from index 5 to 7
+int index = company.indexOf("leaf"); // Returns the starting index of 
