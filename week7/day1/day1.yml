@@ -1,0 +1,194 @@
+Today's Agenda:
+02:30 - 03:15 -> Constructors & Keywords(this)
+03:15 - 04:30 -> POM Introduction 
+04:30 - 05:00 -> Breakout + Break 
+05:00 - 06:00 -> POM Parallel Execution & Excel Integration
+06:00 - 06:30 -> Breakout 
+
+
+Constructor:
+
+ClassName objectName=new ClassName();
+
+ClassName()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Page Object Model - Design Pattern
+
+Design Pattern -> Best Practices to code
+ - pom.xml -> Project Object Model
+
+ - POM     -> Page Object Model
+
+Pages
+LoginPage :
+enterUsername - retain in the samepage - keyword -this
+enterPassword - retain in the samepage -keyword -this (return this)
+clickLoginButton - nextpage - call nextpage constructor
+
+return new WelcomePage();
+
+
+
+return this - retain in the same page or class
+return new NextPage()-  if its connected with next page
+
+
+WelcomePage:
+clickCRMSFALink
+Logout
+MyHomePage: 
+clickLeadsLink
+clickAccountsLink
+MyLeadsPage:
+clickCreateLeadLink 
+clickFindLeadsLink
+clickMergeLeadsLink
+CreateLeadPage :
+enterCompanyName 
+enterFirstName
+enterLastName 
+clickSubmitButton
+ViewLeadPage :
+verifyLeads 
+clickEditButton
+clickDeleteButton 
+clickDuplicateButton
+
+
+
+Steps to Implement POM:
+*Create a new Project and have all the dependencies inside the pom.xml
+*Create 3 packages inside src/main/java
+base
+pages
+runner
+
+*base Create a ProjectSpecificMethods or BaseClass and create 2 methods preCondition() and postCondition()
+ and annotate with @BeforeMethod and @AfterMethod Create static driver as a global variable
+*pages Create 6 classes for each page Each Classes inside pages package should extends 
+ProjectSpecificMethods or BaseClass Create methods for each action inside each page Inside each method 
+add return statement according to the page navigation 
+-if an action stays in the same page -> return this 
+-if an action takes you to another page -> return new nextPage();
+*testcases or runner
+All classes inside the testcase package should extend ProjectSpecificMethods   or baseclassCreate a class called RunLogin Create a method called runLogin and annotate with @Test Create object for LoginPage and call the method and execute
+
+
+-If i want to reatin same page -  => return this;
+-If i want to go next page - return new  nextpage constructor-> 
+ return new Homepage();
+
+
+For Sequential Execution:
+- Driver declaration should be static
+- Create 2 testcases inside testcases package
+     runLogin
+     runCreateLead
+- Select the required testcases and convert into testng.xml file
+- Finally, run the testcases together sequentially from testng.xml file
+
+
+
+
+
+parallel execution- passing static keyword for the driver
+
+i should use static keyword
+
+driver  issue:
+in all pages i am creating own constructor call with parameterized for(driver)
+
+step 1: remove static keyword from base or PSM
+
+step2: create own constructor call for pages with parameterized driver
+public LoginPage(ChromeDriver driver){
+this.driver=driver;
+}
+
+step3 :  Wherver you have created constructor, you need pass driver variable 
+return new LoginPage(driver);
+
+
+
+
+
+
+
+
+
+
+
+driver -issue 
+if driver is static - parallel execution is not happened
+if i remove static keyword- i get null pointer excpet
+
+For Parallel Execution:
+
+    - Remove static keyword in BaseClass
+    - Create parameterized constructor in each pages
+       public LoginPage(ChromeDriver driver) {
+        //this keyword-used in variable level
+        this.driver- its coming from PSM or BaseClass
+        driver- local variable
+	        this.driver=driver;
+         }
+    - Pass driver value in each Constructor initialization in each pages and testcases
+return new HomePage(driver);
+
+//if static removed from driver -null pointer 
+//i am having static keyword i cannot perform parallel
+ Create parameterized constructor in each pages
+       public LoginPage(ChromeDriver driver) {
+        //this keyword-used in variable level
+        this.driver- its coming from PSM
+        driver- local variable
+	        this.driver=driver;
+         }
+
+         i can able run both seq n parallel
+
+
+
+Static Parameterize:
+- Create input agrs inside the method
+-remove hardcoded value and replace the variable Name
+-pass the value in TestCase level
+
+
+POM with Excel Integration:
+ create new Package as utils 
+ copy and paste from program perv porject
+ create folder and paste excel sheet
+
+Create data folder and have the excelsheets inside Login CreateLead
+Create a package called utils and have the ReadExcel java class inside
+Create sendData() and annotate with DataProvider and call the readExcel() and return
+Replace all the hardcoded data with input arguments in the required pages
+In the testClasses, use dataProvider attribute to receive the data and pass input arguments in the test method.
+Create setValues() in each testclass to mention the fileName and annotate with @BeforeTest
+
+
+How to Parameterize the data?
+	  1)Create a new package(utils) and copy the ReadExel class from the previous project or package 
+	  and paste it here
+	  2)Create a data folder and create excel sheets
+	  3)Declare the filedata globally in baseclass
+	  4)Create a method for @DataProvider and call the ReadExel class
+	  5)Integrate @Test with dataProvider attribute
+	  6)Pass the inputs as arguments in the testcase method level and replace the hardcoded values
+	  7)In the testcase create a method to mention
